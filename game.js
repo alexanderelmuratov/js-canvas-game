@@ -122,8 +122,10 @@ const init = () => {
   bigScoreEl.innerHTML = score;
 };
 
+let spawnEnemiesTimerId;
+
 const spawnEnemies = () => {
-  setInterval(() => {
+  spawnEnemiesTimerId = setInterval(() => {
     const radius = Math.random() * (30 - 10) + 10;
 
     let x;
@@ -192,6 +194,7 @@ const animate = () => {
       cancelAnimationFrame(animationId);
       modalEl.style.display = "flex";
       bigScoreEl.innerHTML = score;
+      clearInterval(spawnEnemiesTimerId);
     }
 
     projectiles.forEach((projectile, projectileIdx) => {
